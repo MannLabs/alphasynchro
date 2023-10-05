@@ -1,0 +1,6 @@
+coverage==7.1.0
+twine==4.0.2
+ipykernel==6.21.2
+bumpversion==0.6.0
+pipdeptree==2.5.0
+pytest==7.2.1

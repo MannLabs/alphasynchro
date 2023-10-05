@@ -1,0 +1,53 @@
+{
+  "database": {
+    "bucket_size": 32768,
+    "enzyme": {
+      "missed_cleavages": 1,
+      "min_len": 5,
+      "max_len": 40,
+      "cleave_at": "KR",
+      "restrict": "P",
+      "c_terminal": true
+    },
+    "fragment_min_mz": 200.0,
+    "fragment_max_mz": 1700.0,
+    "peptide_min_mass": 500.0,
+    "peptide_max_mass": 6000.0,
+    "min_ion_index": 2,
+    "static_mods": {
+      "C": 57.0215
+    },
+    "variable_mods": {
+      "M": 15.9949
+    },
+    "max_variable_mods": 2,
+    "decoy_tag": "rev_",
+    "generate_decoys": true
+  },
+  "fragment_tol": {
+    "ppm": [
+     -25,
+     25
+    ]
+  },
+  "precursor_tol": {
+    "ppm": [
+      -15,
+      15
+    ]
+  },
+  "isotope_errors": [
+    0,
+    0
+  ],
+  "deisotope": true,
+  "chimera": false,
+  "predict_rt": true,
+  "min_peaks": 5,
+  "max_peaks": 99999,
+  "min_matched_peaks": 4,
+  "max_fragment_charge": 1,
+  "report_psms": 1,
+  "parallel": true,
+  "ignore_precursor_charge": false
+}

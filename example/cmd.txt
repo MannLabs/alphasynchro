@@ -1,0 +1,7 @@
+sample_path=data/input/alphasynchro/raw/HeLa_21min
+sample_name=20220923_TIMS03_PaSk_SA_HeLa_Evo05_21min_IM0713_classical_SyS_4MS_wCE_S6-C3_1_32405
+out_path=data/output/alphasynchro/HeLa_21min
+config_path=data/config/alphasynchro/HeLa_21min
+species=human
+mkdir -p "$out_path"
+(time (time alphatims export hdf "$sample_path"/"$sample_name".d && time peakpicker run_pipeline "$config_path"/peakpicker_config.json "$sample_path"/"$sample_name".d "$out_path"/"$sample_name".clusters.hdf && time alphasynchro create_spectra --analysis_file_name "$out_path"/"$sample_name".spectra.hdf --cluster_file_name "$out_path"/"$sample_name".clusters.hdf && time alphasynchro write_mgf --analysis_file_name "$out_path"/"$sample_name".spectra.hdf --spectra_file_name "$out_path"/"$sample_name".spectra.mgf && msconvert "$out_path"/"$sample_name".spectra.mgf && mv "$sample_name".spectra.mzML "$out_path"/"$sample_name".spectra.mzML && time sage "$config_path"/sage_config.json -f "$config_path"/"$species".fasta "$out_path"/"$sample_name".spectra.mzML 3>&1 1>&2 2>&3 && mv results.sage.tsv "$out_path"/"$sample_name".sage.tsv && mv results.json "$out_path"/"$sample_name".sage.json)) | tee "$out_path"/"$sample_name".log.txt

@@ -1,0 +1,44 @@
+
+{
+  "number_of_threads": 31,
+  "smoothing": {
+    "algorithm_name": "smoothing_algorithm_1",
+    "im_sigma": 0.012,
+    "im_tolerance": 0.004,
+    "ppm_tolerance": 30.0,
+    "rt_sigma": 1.5,
+    "rt_tolerance": 1.5
+  },
+  "clustering": {
+    "algorithm_name": "clustering_algorithm_1",
+    "im_tolerance": 0.004,
+    "ppm_tolerance": 20.0,
+    "rt_tolerance": 1.5,
+    "clustering_threshold": 5
+  },
+  "ms1": {
+    "precursors": {
+      "min_size": 10
+    },
+    "isotopes": {
+      "charge_2": {
+        "im_tolerance": 0.004,
+        "ppm_tolerance": 20.0,
+        "rt_tolerance": 1.5
+      },
+      "charge_3": {
+        "im_tolerance": 0.004,
+        "ppm_tolerance": 20.0,
+        "rt_tolerance": 1.5
+      },
+      "monoisotopic_precursors": {
+        "ks_2d_threshold": 0.4
+      }
+    }
+  },
+  "ms2": {
+    "fragments": {
+      "min_size": 5
+    }
+  }
+}
