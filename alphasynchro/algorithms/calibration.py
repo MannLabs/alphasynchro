@@ -40,6 +40,7 @@ class TransmissionCalibrator:
             indexed_fragments=indexed_fragments,
         )
         unfragmented_pairs = um.match_all()
+        most_intense_count = np.minimum(most_intense_count, len(unfragmented_pairs))
         unfragmented_pairs = unfragmented_pairs[
             np.argpartition(
                 fragments.aggregate_data.summed_intensity[unfragmented_pairs[:,1]],
