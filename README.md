@@ -4,10 +4,6 @@ This package is intended to convert a clusters.hdf file with alphasynchro data i
 
 ## Installation
 
-* Required
-  * timspeak.zip
-  * alphasynchro.zip
-
 * Steps
   * Download timspeak: `git clone https://github.com/MannLabs/timspeak.git`
   * Download alphasynchro: `git clone https://github.com/MannLabs/alphasynchro.git`
