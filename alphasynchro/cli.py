@@ -93,6 +93,13 @@ def gui() -> None:
     help="The minimum fragment size.",
     show_default=True,
 )
+@click.option(
+    "--diapasef",
+    is_flag=True,
+    default=False,
+    help="Use regular diapasef rather than synchropasef.",
+    show_default=True,
+)
 def create_spectra(
     analysis_file_name: str,
     cluster_file_name: str,
@@ -101,7 +108,8 @@ def create_spectra(
     max_im_weight: float,
     max_frame_weight: float,
     unique_transitions_only: bool,
-    min_fragment_size: int
+    min_fragment_size: int,
+    diapasef: bool,
 ) -> None:
     import alphasynchro.algorithms.pipeline
     import alphasynchro.performance.multithreading
@@ -119,6 +127,7 @@ def create_spectra(
         max_frame_weight=max_frame_weight,
         unique_transitions_only=unique_transitions_only,
         min_fragment_size=min_fragment_size,
+        diapasef=diapasef,
     )
 
 @run.command(

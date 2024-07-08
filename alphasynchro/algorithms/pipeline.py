@@ -54,6 +54,7 @@ class Pipeline:
         max_frame_weight: float = 1,
         min_peaks: int = 0,
         unique_transitions_only: bool = False,
+        diapasef: bool = False,
     ) -> None:
         self.load_data_space(cluster_file_name)
         self.load_peaks(cluster_file_name, min_fragment_size)
@@ -68,7 +69,8 @@ class Pipeline:
             max_rt_weight=max_rt_weight,
             max_im_weight=max_im_weight,
             max_frame_weight=max_frame_weight,
-            unique_transitions_only=unique_transitions_only
+            unique_transitions_only=unique_transitions_only,
+            diapasef=diapasef,
         )
 
     def load_data_space(
@@ -140,6 +142,7 @@ class Pipeline:
         max_im_weight: float = .5,
         max_frame_weight: float = .5,
         unique_transitions_only: bool = False,
+        diapasef: bool = False,
     ) -> None:
         logging.info("Calculating transitions and creating MS2 spectra...")
         cycle_center = (np.sum(self.cycle, axis=-1) / 2)[0]
@@ -147,6 +150,8 @@ class Pipeline:
             precursors=self.monoisotopic_precursors,
             calibration=self.transmission_calibrator,
             cycle_center=cycle_center,
+            cycle=self.cycle,
+            diapasef=diapasef,
         )
         rt_transitions_dict = {}
         im_transitions_dict = {}

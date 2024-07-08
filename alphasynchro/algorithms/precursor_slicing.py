@@ -17,6 +17,8 @@ class SlicedIMDistribution:
     precursors: alphasynchro.ms.peaks.precursors.Precursors
     calibration: alphasynchro.algorithms.calibration.TransmissionCalibrator
     cycle_center: np.ndarray
+    cycle: np.ndarray
+    diapasef: bool
 
     @alphasynchro.performance.compiling.njit(nogil=True)
     def get_transmitted_projection_cdf(
@@ -58,11 +60,19 @@ class SlicedIMDistribution:
         start_offset = self.precursors.im_projection.get_start_offset(index)
         end_offset = self.precursors.im_projection.get_end_offset(index)
         result_buffer = np.copy(self.cycle_center[frame, start_offset: end_offset])
-        for buffer_index, mz in enumerate(result_buffer):
-            mz_difference = mz - precursor_mz
-            result_buffer[buffer_index] = self.calibration.get_efficiency(
-                mz_difference
-            )
+        if self.diapasef:
+            borders = np.copy(self.cycle[0, frame, start_offset: end_offset])
+            for buffer_index, (start, end) in enumerate(borders):
+                if start <= precursor_mz <= end:
+                    result_buffer[buffer_index] = 1
+                else:
+                    result_buffer[buffer_index] = 0
+        else:
+            for buffer_index, mz in enumerate(result_buffer):
+                mz_difference = mz - precursor_mz
+                result_buffer[buffer_index] = self.calibration.get_efficiency(
+                    mz_difference
+                )
         return result_buffer
 
 
